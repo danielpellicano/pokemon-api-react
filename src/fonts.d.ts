@@ -1,0 +1,2 @@
+format("truetype");
+format("opentype");

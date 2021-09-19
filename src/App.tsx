@@ -5,6 +5,10 @@ import GlobalStyle, {
   ListPokemons,
 } from "./assets/styles/globalStyles";
 import api from "./services/pokemonApi";
+import { Title } from "./components/Header/Title";
+// import { Loader } from "./components/Loader";
+import { PokeCard } from "./components/PokeCard";
+import PokemonApiContext from "./contexts/pokemonsContext";
 
 function App() {
   // interface IPokemonProps {
@@ -17,36 +21,65 @@ function App() {
   useEffect(() => {
     api
       .get("pokedex.json")
-      .then((response) => setPokemonsData(response.data.pokemon))
+      .then((response) => {
+        let pokemonData = response.data.pokemon;
+        setPokemonsData(pokemonData);
+      })
       .catch((err) => {
         console.error("ops! ocorreu um erro" + err);
       });
   }, []);
+
   console.log(pokemonsData);
 
   return (
     <Fragment>
-      <GlobalStyle />
-      <Header />
-      <Container>
-        <ListPokemons>
-          {pokemonsData.map(({ name, img, num, type }: any) => (
-            <div key={name}>
-              <img src={img} alt={name} title={name} />
-              <span>{num}</span>
-              <h3>{name}</h3>
-              <div className="type">
-                <ul>
-                  {type.map(function (nome: any) {
-                    console.log(nome);
-                    return <li>{nome}</li>;
-                  })}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </ListPokemons>
-      </Container>
+      {/* <Loader /> */}
+      {/*  */}
+      <PokemonApiContext.Provider value={{ pokemonsData, setPokemonsData }}>
+        <GlobalStyle />
+        <Header />
+        <Container>
+          <Title />
+          <ListPokemons>
+            {pokemonsData.map(
+              ({
+                id,
+                name,
+                img,
+                num,
+                type,
+                weight,
+                candy,
+                height,
+                candy_count,
+                egg,
+                spawn_chance,
+                spawn_time,
+                next_evolution,
+                weaknesses,
+              }: any) => (
+                <PokeCard
+                  key={id}
+                  num={num}
+                  img={img}
+                  name={name}
+                  type={type}
+                  weight={weight}
+                  candy={candy}
+                  height={height}
+                  candy_count={candy_count}
+                  egg={egg}
+                  spawn_chance={spawn_chance}
+                  spawn_time={spawn_time}
+                  next_evolution={next_evolution}
+                  weaknesses={weaknesses}
+                />
+              )
+            )}
+          </ListPokemons>
+        </Container>
+      </PokemonApiContext.Provider>
     </Fragment>
   );
 }

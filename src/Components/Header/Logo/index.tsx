@@ -1,5 +1,10 @@
 import logo from "../../../assets/images/logo.png";
+import { LogoBox } from "./styled";
 
 export function Logo() {
-  return <img src={logo} alt="Pokedéx" width="300" />;
+  return (
+    <LogoBox>
+      <img src={logo} alt="Pokedéx" width="300" />
+    </LogoBox>
+  );
 }

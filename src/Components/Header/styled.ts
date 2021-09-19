@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 export const HeaderStyled = styled.header`
-  background: #ccc;
+  background-color: #b8c6db;
+  background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
+  margin-bottom: 50px;
+  border-bottom: 5px solid #00000012;
 `;
 
 export const HeaderContainer = styled.header`
@@ -9,4 +12,11 @@ export const HeaderContainer = styled.header`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  input {
+    width: 250px;
+    padding: 10px;
+    border-radius: 50px;
+  }
 `;
