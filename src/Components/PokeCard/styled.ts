@@ -25,7 +25,7 @@ export const PokeCardStyled = styled.div`
     border-radius: 10px;
     perspective: 1000px;
     box-shadow: 0;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
   }
   .flipcards .flipcard:hover .flipcard__inner {
     transform: rotateY(-180deg);
@@ -64,29 +64,78 @@ export const PokeCardStyled = styled.div`
     transform: rotateY(-180deg);
     z-index: 2;
     display: block;
-
-    h4 {
-      margin-top: 5px;
-    }
-
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-
-      li {
-        padding: 5px;
-        border: 1px solid #ccc;
-        margin-bottom: 5px;
-        font-size: 12px;
-        margin: 3px;
-      }
-    }
+    padding-top: 0;
   }
   .flipcards .flipcard__inner .__back p {
     font-size: 3em;
+  }
+
+  .type-wikness {
+    h5 {
+      margin: 0;
+      padding-top: 5px;
+      font-size: 12px;
+      margin-bottom: 5px;
+      color: #333;
+    }
+    span {
+      font-size: 12px !important;
+    }
+  }
+`;
+
+export const PokemonBackInfo = styled.div`
+  h4 {
+    margin-top: 5px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    background: #2d2d2d;
+    color: #fff;
+    display: block;
+    padding: 3px 5px;
+    border-radius: 5px;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    li {
+      padding: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 5px;
+      font-size: 10px;
+      margin: 1px;
+      background: #333;
+      color: #fff;
+      width: 43%;
+      border-radius: 6px;
+      position: relative;
+      svg {
+        margin-right: 5px;
+      }
+      span {
+        display: none;
+        position: absolute;
+        padding: 5px;
+        top: 1px;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        left: 0;
+        border-radius: 8px;
+        background: #000;
+        z-index: 9;
+      }
+
+      &:hover span {
+        display: block;
+      }
+    }
   }
 `;
 
@@ -98,12 +147,13 @@ export const PokemonType = styled.div`
     display: flex;
     margin: 0;
     justify-content: center;
+    flex-wrap: wrap;
 
     li {
       padding: 7px;
       border-radius: 5px;
       background: #000;
-      margin: 5px;
+      margin: 2px;
       color: #fff;
 
       span {
@@ -180,4 +230,14 @@ export const PokemonNumber = styled.span`
   font-style: italic;
   display: block;
   margin-top: 10px;
+`;
+
+export const ListPokemons = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  min-height: 100vh;
+  height: 100%;
+  margin-bottom: 30px;
 `;

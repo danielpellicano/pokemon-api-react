@@ -6,6 +6,12 @@ export const TitleStyled = styled.div`
   align-items: center;
   justify-content: center;
 
+  @media (max-width: 468px) {
+    h1 {
+      display: none;
+    }
+  }
+
   svg {
     margin-left: 20px;
   }

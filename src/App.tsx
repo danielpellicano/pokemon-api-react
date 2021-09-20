@@ -1,14 +1,13 @@
 import { Fragment, useEffect, useState } from "react";
 import { Header } from "./components/Header";
-import GlobalStyle, {
-  Container,
-  ListPokemons,
-} from "./assets/styles/globalStyles";
+import GlobalStyle, { Container } from "./assets/styles/globalStyles";
+import { ListPokemons } from "./components/PokeCard/styled";
 import api from "./services/pokemonApi";
 import { Title } from "./components/Header/Title";
-// import { Loader } from "./components/Loader";
+import { Loader } from "./components/Loader";
 import { PokeCard } from "./components/PokeCard";
 import PokemonApiContext from "./contexts/pokemonsContext";
+import { Footer } from "./components/Footer";
 
 function App() {
   // interface IPokemonProps {
@@ -17,25 +16,28 @@ function App() {
   // }
 
   const [pokemonsData, setPokemonsData] = useState([]);
-
+  const [loader, setLoader] = useState(false);
   useEffect(() => {
-    api
-      .get("pokedex.json")
-      .then((response) => {
-        let pokemonData = response.data.pokemon;
-        setPokemonsData(pokemonData);
-      })
-      .catch((err) => {
-        console.error("ops! ocorreu um erro" + err);
-      });
+    setLoader(true);
+    setTimeout(() => {
+      api
+        .get("pokedex.json")
+        .then((response) => {
+          let pokemonData = response.data.pokemon;
+          setPokemonsData(pokemonData);
+          setLoader(false);
+        })
+        .catch((err) => {
+          console.error("ops! ocorreu um erro" + err);
+        });
+    }, 3000);
   }, []);
 
   console.log(pokemonsData);
 
   return (
     <Fragment>
-      {/* <Loader /> */}
-      {/*  */}
+      {loader && <Loader />}
       <PokemonApiContext.Provider value={{ pokemonsData, setPokemonsData }}>
         <GlobalStyle />
         <Header />
@@ -80,6 +82,7 @@ function App() {
           </ListPokemons>
         </Container>
       </PokemonApiContext.Provider>
+      <Footer />
     </Fragment>
   );
 }

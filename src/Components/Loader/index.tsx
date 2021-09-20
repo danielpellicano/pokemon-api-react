@@ -6,6 +6,7 @@ export const Loader = () => {
       <div className="pokeball">
         <div className="pokeball__button"></div>
       </div>
+      <p>Carregando Pokemons, por favor aguarde...</p>
     </PokeballLoader>
   );
 };

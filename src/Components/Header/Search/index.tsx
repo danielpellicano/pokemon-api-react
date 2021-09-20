@@ -1,8 +1,9 @@
 import { Fragment, useContext, useEffect, useState } from "react";
 // import { FcSearch } from "react-icons/fc";
 import { CgPokemon } from "react-icons/cg";
+import { MdClose } from "react-icons/md";
 
-import { SearchBox } from "./styled";
+import { SearchBox, SearchMobile, SearchScreenMobile } from "./styled";
 import { Input } from "../../Form/Input";
 import api from "../../../services/pokemonApi";
 import PokemonApiContext from "../../../contexts/pokemonsContext";
@@ -10,6 +11,8 @@ import PokemonApiContext from "../../../contexts/pokemonsContext";
 export const Search = () => {
   const [inputSearch, setInputSearch] = useState();
   const [dataSearch, setDataSearch] = useState([] as any);
+  const [searchMobile, setSearchMobile] = useState(false);
+
   const PokemonContext = useContext(PokemonApiContext);
 
   useEffect(() => {
@@ -38,12 +41,30 @@ export const Search = () => {
       <SearchBox>
         <Input
           name="nome"
-          placeholder="Pesquise seu pokemón"
+          placeholder="Pesquise seu pokemón por nome ou número"
           onChange={(e: any) => setInputSearch(e.target.value)}
         />
-        {/* <FcSearch /> */}
         <CgPokemon />
       </SearchBox>
+      <SearchMobile onClick={() => setSearchMobile(true)}>
+        <CgPokemon />
+      </SearchMobile>
+      {searchMobile && (
+        <>
+          <SearchScreenMobile>
+            <Input
+              name="nome"
+              placeholder="Pesquise seu pokemón por nome ou número"
+              onChange={(e: any) => setInputSearch(e.target.value)}
+            />
+            <MdClose
+              onClick={() => {
+                setSearchMobile(false);
+              }}
+            />
+          </SearchScreenMobile>
+        </>
+      )}
     </Fragment>
   );
 };

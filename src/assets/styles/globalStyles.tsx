@@ -32,10 +32,4 @@ export const Container = styled.div`
   margin: 0 auto;
 `;
 
-export const ListPokemons = styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`;
-
 export default GlobalStyle;

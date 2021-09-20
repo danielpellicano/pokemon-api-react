@@ -9,6 +9,19 @@ export const PokeballLoader = styled.div`
   justify-content: center;
   background: #ffffffcf;
   z-index: 9;
+
+  p {
+    position: absolute;
+    bottom: 20%;
+    font-weight: bold;
+    font-family: "PokemonFont";
+    font-size: 24px;
+    text-align: center;
+
+    @media (max-width: 468px) {
+      bottom: 15%;
+    }
+  }
   .pokeball {
     position: relative;
     width: 200px;
